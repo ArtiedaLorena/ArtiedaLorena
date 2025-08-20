@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ef4444" />
+    <meta name="description" content="Conecta con personas increíbles cerca de ti. Descubre nuevos amigos y construye relaciones auténticas basadas en ubicación." />
+    <meta name="keywords" content="amistad, amigos, ubicación, socializar, conocer gente, app social" />
+    <meta name="author" content="Friends Location App" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://friendsapp.com/" />
+    <meta property="og:title" content="Friends Location App - Conecta con personas cerca de ti" />
+    <meta property="og:description" content="Descubre nuevos amigos y construye relaciones auténticas basadas en ubicación." />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://friendsapp.com/" />
+    <meta property="twitter:title" content="Friends Location App - Conecta con personas cerca de ti" />
+    <meta property="twitter:description" content="Descubre nuevos amigos y construye relaciones auténticas basadas en ubicación." />
+    <meta property="twitter:image" content="%PUBLIC_URL%/og-image.jpg" />
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <title>Friends Location App - Conecta con personas cerca de ti</title>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Friends Location App",
+      "description": "Aplicación para conectar con personas cerca de ti y hacer nuevos amigos",
+      "url": "https://friendsapp.com",
+      "applicationCategory": "SocialNetworkingApplication",
+      "operatingSystem": "Web, iOS, Android",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <div style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        font-family: 'Inter', system-ui, sans-serif;
+        background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+        color: #374151;
+        text-align: center;
+        padding: 20px;
+      ">
+        <div>
+          <h1 style="font-size: 2rem; font-weight: bold; margin-bottom: 1rem; color: #ef4444;">
+            JavaScript Requerido
+          </h1>
+          <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+            Para usar Friends Location App, necesitas habilitar JavaScript en tu navegador.
+          </p>
+          <p style="color: #6b7280;">
+            Esta aplicación utiliza tecnologías modernas que requieren JavaScript para funcionar correctamente.
+          </p>
+        </div>
+      </div>
+    </noscript>
+    
+    <!-- Root element for React -->
+    <div id="root"></div>
+    
+    <!-- Loading fallback -->
+    <div id="loading-fallback" style="
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      font-family: 'Inter', system-ui, sans-serif;
+    ">
+      <div style="text-align: center;">
+        <div style="
+          width: 60px;
+          height: 60px;
+          border: 4px solid #fecaca;
+          border-top: 4px solid #ef4444;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+          margin: 0 auto 20px;
+        "></div>
+        <h2 style="color: #374151; font-size: 1.5rem; margin-bottom: 0.5rem;">
+          Cargando Friends App...
+        </h2>
+        <p style="color: #6b7280; font-size: 1rem;">
+          Preparando tu experiencia de amistad
+        </p>
+      </div>
+    </div>
+    
+    <style>
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Hide loading fallback when React loads */
+      .react-loaded #loading-fallback {
+        display: none !important;
+      }
+      
+      /* Prevent flash of unstyled content */
+      body {
+        margin: 0;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #f9fafb;
+      }
+      
+      /* Scrollbar styling */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background-color: #cbd5e1;
+        border-radius: 3px;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: #94a3b8;
+      }
+      
+      /* Focus styles for accessibility */
+      *:focus {
+        outline: 2px solid #ef4444;
+        outline-offset: 2px;
+      }
+      
+      /* Remove focus outline for mouse users */
+      .js-focus-visible *:focus:not(.focus-visible) {
+        outline: none;
+      }
+    </style>
+    
+    <!-- Hide loading fallback when React mounts -->
+    <script>
+      // Add class to body when React loads
+      window.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+          if (document.querySelector('#root').children.length > 0) {
+            document.body.classList.add('react-loaded');
+          }
+        }, 100);
+      });
+      
+      // Focus visible polyfill for better accessibility
+      (function() {
+        function applyFocusVisiblePolyfill(scope) {
+          var hadKeyboardEvent = true;
+          var hadFocusVisibleRecently = false;
+          var hadFocusVisibleRecentlyTimeout = null;
+
+          var inputTypesAllowlist = {
+            text: true,
+            search: true,
+            url: true,
+            tel: true,
+            email: true,
+            password: true,
+            number: true,
+            date: true,
+            month: true,
+            week: true,
+            time: true,
+            datetime: true,
+            'datetime-local': true
+          };
+
+          function isValidFocusTarget(el) {
+            if (
+              el &&
+              el !== document &&
+              el.nodeName !== 'HTML' &&
+              el.nodeName !== 'BODY' &&
+              'classList' in el &&
+              'contains' in el.classList
+            ) {
+              return true;
+            }
+            return false;
+          }
+
+          function focusTriggersKeyboardModality(el) {
+            var type = el.type;
+            var tagName = el.tagName;
+
+            if (tagName === 'INPUT' && inputTypesAllowlist[type] && !el.readOnly) {
+              return true;
+            }
+
+            if (tagName === 'TEXTAREA' && !el.readOnly) {
+              return true;
+            }
+
+            if (el.isContentEditable) {
+              return true;
+            }
+
+            return false;
+          }
+
+          function addFocusVisibleClass(el) {
+            if (el.classList.contains('focus-visible')) {
+              return;
+            }
+            el.classList.add('focus-visible');
+            el.setAttribute('data-focus-visible-added', '');
+          }
+
+          function removeFocusVisibleClass(el) {
+            if (!el.hasAttribute('data-focus-visible-added')) {
+              return;
+            }
+            el.classList.remove('focus-visible');
+            el.removeAttribute('data-focus-visible-added');
+          }
+
+          function onPointerDown() {
+            hadKeyboardEvent = false;
+          }
+
+          function onKeyDown(e) {
+            if (e.metaKey || e.altKey || e.ctrlKey) {
+              return;
+            }
+            hadKeyboardEvent = true;
+          }
+
+          function onFocus(e) {
+            if (!isValidFocusTarget(e.target)) {
+              return;
+            }
+
+            if (hadKeyboardEvent || focusTriggersKeyboardModality(e.target)) {
+              addFocusVisibleClass(e.target);
+            }
+          }
+
+          function onBlur(e) {
+            if (!isValidFocusTarget(e.target)) {
+              return;
+            }
+
+            if (
+              e.target.classList.contains('focus-visible') ||
+              e.target.hasAttribute('data-focus-visible-added')
+            ) {
+              hadFocusVisibleRecently = true;
+              window.clearTimeout(hadFocusVisibleRecentlyTimeout);
+              hadFocusVisibleRecentlyTimeout = window.setTimeout(function() {
+                hadFocusVisibleRecently = false;
+              }, 100);
+              removeFocusVisibleClass(e.target);
+            }
+          }
+
+          if (scope.querySelector(':focus-visible')) {
+            return;
+          }
+
+          scope.addEventListener('keydown', onKeyDown, true);
+          scope.addEventListener('mousedown', onPointerDown, true);
+          scope.addEventListener('pointerdown', onPointerDown, true);
+          scope.addEventListener('touchstart', onPointerDown, true);
+          scope.addEventListener('focus', onFocus, true);
+          scope.addEventListener('blur', onBlur, true);
+
+          scope.classList.add('js-focus-visible');
+        }
+
+        applyFocusVisiblePolyfill(document);
+      })();
+    </script>
+  </body>
+</html>

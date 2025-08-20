@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  # Base de datos PostgreSQL
+  postgres:
+    image: postgres:15-alpine
+    container_name: friends-app-postgres
+    environment:
+      POSTGRES_DB: friends_app
+      POSTGRES_USER: friends_user
+      POSTGRES_PASSWORD: friends_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    networks:
+      - friends-network
+    restart: unless-stopped
+
+  # Redis para cache y sesiones
+  redis:
+    image: redis:7-alpine
+    container_name: friends-app-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - friends-network
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+
+  # Aplicación Spring Boot (opcional, para producción)
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: friends-app
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - DB_USERNAME=friends_user
+      - DB_PASSWORD=friends_password
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/friends_app
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - JWT_SECRET=your-super-secret-jwt-key-here-minimum-256-bits-for-production
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - friends-network
+    restart: unless-stopped
+    profiles:
+      - production
+
+  # Adminer para gestión de base de datos (opcional)
+  adminer:
+    image: adminer:latest
+    container_name: friends-app-adminer
+    ports:
+      - "8081:8080"
+    networks:
+      - friends-network
+    restart: unless-stopped
+    profiles:
+      - dev
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  friends-network:
+    driver: bridge
